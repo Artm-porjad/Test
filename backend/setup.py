@@ -6,6 +6,11 @@ setup(
     packages=find_packages(include=['website.*']),
     install_requires=[
         'starlette',
-        'uvicorn'
+        'uvicorn',
+        'sqlalchemy',
+        'alembic',
+        'asyncpg',
+        'psycopg2-binary',
+        'python-multipart'
     ]
 )

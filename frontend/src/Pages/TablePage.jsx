@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, {useEffect, useState} from "react";
 import Button from "react-bootstrap/Button";
 import { Form } from "react-bootstrap";
 import Modal from "../components/Modal";
@@ -119,26 +119,47 @@ const typeArr = [
 
 const TablePage = () => {
   // Первоначальные данные
-  const [content, setContent] = useState(data);
-  const content2 = JSON.parse(JSON.stringify(content));
+  // const [content, setContent] = useState(data);
+  const [contentFromBase, setContentFromBase] = useState(data);
+  const content2 = JSON.parse(JSON.stringify(contentFromBase));
   // Состояние модального окна
   const [modal, setModal] = useState(false);
   const [modalRow, setModalRow] = useState([]);
   const [modalRowIndex, setModalRowIndex] = useState(0);
   // Заголовки столбцов
-  const title = content[0];
+  const title = contentFromBase[0];
   // Массив выпадающих списков
-  const dropArr = content[1];
+  const dropArr = contentFromBase[1];
+
+  const getContent = async (url) => {
+    const response = await fetch(url);
+    return await response.json();
+  };
 
   const onSubmit = (event) => {
-    setContent(content2);
+    setContentFromBase(content2);
+    console.log(content2)
+    console.log(contentFromBase)
+    const data = new FormData();
+    data.append("data", JSON.stringify(content2));
+    fetch("/api/test1", {
+      method: "POST",
+      body: data,
+    }).finally(() => console.log(123));
+    event.preventDefault();
+
+
     event.preventDefault();
   };
   const onClick = (event) =>{
-    const a = JSON.parse(JSON.stringify(content));
+    const a = JSON.parse(JSON.stringify(contentFromBase));
     a[a.length] = [['-'],['-'],['-'],['-'],['-'],['-'],['-'],['-'],['-'],['-'],['-'],['-'],['-'],['-'],['-']]
-    setContent(a)
+    setContentFromBase(a)
   }
+  useEffect(() => {
+    getContent('/api/test').then((data) => setContentFromBase(data));
+  }, []);
+
 
   const fileName = "Форма списка";
 
@@ -164,7 +185,7 @@ const TablePage = () => {
                     index_row={modalRowIndex + 1}
                     key={key}
                     content2={content2}
-                    content={content}
+                    content={contentFromBase}
                     dropValue={dropArr[key]}
                     typeArr={typeArr}
                   />
@@ -184,14 +205,14 @@ const TablePage = () => {
       </div>
       <TableData
         typeArr={typeArr}
-        title={content[0]}
-        data={content.slice(2)}
+        title={title}
+        data={contentFromBase.slice(2)}
         setModal={setModal}
         setModalRow={setModalRow}
         setModalRowIndex={setModalRowIndex}
       />
 
-      <ExportCSV csvData={content} fileName={fileName} />
+      <ExportCSV csvData={contentFromBase} fileName={fileName} />
     </div>
   );
 };

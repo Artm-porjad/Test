@@ -1,0 +1,26 @@
+version: '3.2'
+
+networks:
+  test:
+    external: true
+
+services:
+  postgresql:
+    image: postgresql
+    build:
+      context: .
+      dockerfile: docker/postgres/Dockerfile
+    container_name: test-postgresql
+    command: postgres
+    networks:
+      - test
+
+#  alembic:
+#    depends_on:
+#      - postgresql
+#    build:
+#      context: .
+#      dockerfile: docker/postgres/alembic/Dockerfile
+#    container_name: test-alembic
+#    networks:
+#      - test

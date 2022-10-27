@@ -1,5 +1,7 @@
 import uvicorn
-import starlette
+import website
+port = 8001
 
-if __name__ == '__main__':
-    print(123)
+app = website.Application()
+
+uvicorn.run(app, host='0.0.0.0', port=port)
