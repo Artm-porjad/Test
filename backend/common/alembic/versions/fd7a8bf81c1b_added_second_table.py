@@ -41,10 +41,10 @@ def upgrade():
     conn = op.get_bind()
     a = None
     conn.execute('''
-            insert into public.second_tabl (foiv, cur_aprf, napr, fed_num, type_of_doc)
-            values  ('Федеральный фонд обязательного медицинского страхования', 'Иванов', '1', '1', '1'),
-                    ('МВД России', 'Курочкин', '2', '2', '2'),
-                    ('Рослесхоз', NULL, NULL, NULL, NULL);
+            insert into public.second_tabl (reg_nomer, date_postup, name_doc, story_doc, foiv, cur_aprf, napr, fed_num, type_of_doc, resh_doc, status, fin_oc, exp_oc, req_otv, date_otv)
+            values  (NULL, NULL, NULL, NULL,'Федеральный фонд обязательного медицинского страхования', 'Иванов', '1', '1', '1', NULL, NULL, NULL, NULL, NULL, NULL),
+                    (NULL, NULL, NULL, NULL, 'МВД России', 'Курочкин', '2', '2', '2', NULL, NULL, NULL, NULL, NULL, NULL),
+                    (NULL, NULL, NULL, NULL, 'Рослесхоз', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
         ''')
 
 

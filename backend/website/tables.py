@@ -38,10 +38,11 @@ async def get_table(request):
         c = [[] for i in range(15)]
         for row in second_table:
             n = len(row)
-            for j in range(n):
+            for j in range(1, n):
                 if row[j]:
-                    c[j].append(row[j])
+                    c[j-1].append(row[j])
         c[0] = []
+        print(c)
         a = []
         for row in first_table:
             b = []
