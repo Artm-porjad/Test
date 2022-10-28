@@ -38,6 +38,14 @@ def upgrade():
     sa.PrimaryKeyConstraint('id')
     )
     # ### end Alembic commands ###
+    conn = op.get_bind()
+    a = None
+    conn.execute('''
+            insert into public.second_tabl (foiv, cur_aprf, napr, fed_num, type_of_doc)
+            values  ('Федеральный фонд обязательного медицинского страхования', 'Иванов', '1', '1', '1'),
+                    ('МВД России', 'Курочкин', '2', '2', '2'),
+                    ('Рослесхоз', NULL, NULL, NULL, NULL);
+        ''')
 
 
 def downgrade():
