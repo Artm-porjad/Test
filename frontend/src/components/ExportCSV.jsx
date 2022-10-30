@@ -32,12 +32,13 @@ export const ExportCSV = ({ csvData, fileName }) => {
           }
           
           .btn:hover {
-            background-color: green;
+            background-color: black;
           }             
         `}
       </style>
       <Button
-        style={{ marginLeft: "86%" }}
+        className="exelButton"
+        style={{ marginLeft: "1%" }}
         onClick={(e) => exportToCSV(csvData, fileName)}
       >
         Экспортировать в Excel

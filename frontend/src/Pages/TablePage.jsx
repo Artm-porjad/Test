@@ -8,112 +8,57 @@ import { ExportCSV } from "../components/ExportCSV";
 
 
 const data = [
-  [
-    "Рег. номер МКС в СЭД",
-    "Дата поступления в МКС",
-    "Название документа",
-    "В дополнение к или взамен (предыстория документа)",
-    "ФОИВ",
-    "Куратор АПРФ",
-    "Направление",
-    "Фед. Проект / ГИС",
-    "Тип документа",
-    "Решение по документу",
-    "Текущий статус",
-    "Финансовая оценка, тыс. руб.",
-    "Экспертная оценка, тыс. руб.",
-    "Реквизиты ответа в ведомство",
-    "Дата ответа в ведомство",
-  ],
-  [
-    [],
-    [],
-    [],
-    [],
+    ['Ссылка из СЭД', 'Куратор АПРФ', 'Направление', 'Фед.проект', 'Тип документа', 'Текущий статус', 'ФОИВ',
+    'Название документа', 'Рег. номер МКС в СЭД', 'В дополнение к или взамен (предыстория документа)',
+    'Дата поступления в МКС', 'номер в СЭД', 'Контроль Яцеленко', 'Контроль Чукарин', 'Финансовая оценка, тыс. руб.',
+    'Экспертная оценка, тыс. руб.', 'Реквизиты ответа в ведомство', 'Дата ответа в ведомство',
+    'Дата подписания (согласования) директором ДКР', 'Осталось ДНЕЙ до подписания Директором ДКР ( - просрок)',
+    'Просрочка ответа в ведомство', 'ФИО согласующего сотрудника МЦ (текущий согласующий)',
+    'Дата поступления текущему согласующему'],
     [
-      "Федеральный фонд обязательного медицинского страхования",
-      "МВД России",
-      "Рослесхоз",
+      [],
+      ['Иванов', 'Курочкин'],
+      ['Спорт и туризм', 'Здравоохранение', 'Уголовные дела', 'Офромление заграничного паспорта'],
+      ['ГИС ОМС', 'Федеральный проект 2'],
+      [],
+      ['Исполнено', 'Не исполнено'],
+      [], [], [], [], [], [], [], [], [], [],
+      [], [], [], [], [], [], []
     ],
-    ["Иванов", "Курочкин"],
-    ["1", "2"],
-    ["1", "2"],
-    ["1", "2"],
-    [],
-    [],
-    [],
-    [],
-    [],
-    [],
-  ],
-  [
-    "111",
-    "11.01.22",
-    "ТЗ в рамках согласования Распоряжения ",
-    "-",
-    "Федеральный фонд обязательного медицинского страхования",
-    "Иванов",
-    "Здравоохранение",
-    "ГИС ГМП",
-    "ТЗ",
-    "Согласовано с учетом замечаний",
-    "Исполнено",
-    "50",
-    "100",
-    "333",
-    "07.04.2022",
-  ],
-  [
-    "222",
-    "11.01.22",
-    "ТЗ в рамках согласования Распоряжения ",
-    "-",
-    "Федеральный фонд обязательного медицинского страхования",
-    "Иванов",
-    "Здравоохранение",
-    "ГИС ГМП",
-    "ТЗ",
-    "Согласовано с учетом замечаний",
-    "Исполнено",
-    "50",
-    "100",
-    "333",
-    "07.04.2022",
-  ],
-  [
-    "33",
-    "11.01.22",
-    "ТЗ в рамках согласования Распоряжения ",
-    "-",
-    "Федеральный фонд обязательного медицинского страхования",
-    "Иванов",
-    "Здравоохранение",
-    "ГИС ГМП",
-    "ТЗ",
-    "Согласовано с учетом замечаний",
-    "Исполнено",
-    "50",
-    "100",
-    "333",
-    "07.04.2022",
-  ],
+    ['fbe516f6-3e39-11eb-b897-086266012345', 'Курочкин', 'Спорт и туризм', 'Федеральный проект 2', 'ТЗ', 'Исполнено',
+      'Федеральный фонд обязательного медицинского страхования', 'qweqw', '123123', null, '10.10.2022', '123123', '',
+      '', '$4,356.00', '$2,456.00', null, '02.10.2022', null, null, null, null, null],
+    ['fbe516f6-3e39-11eb-b897-086266012346', 'Иванов', 'Уголовные дела', 'ГИС ОМС', 'ТЗ', 'Исполнено', 'МВД России',
+      'qweqwe', '123123', null, '09.10.2022', '1234123', '', '', '$12,312.00', '$123,123.00', null, '11.10.2022', null,
+      null, null, null, null],
+    ['fbe516f6-3e39-11eb-b897-086266012347', 'Иванов', 'Здравоохранение', 'ГИС ОМС', 'ТЗ', 'Не исполнено',
+      'Федеральный фонд обязательного медицинского страхования', 'qweqw', '123123', null, '16.10.2022', '12312', '', '',
+      '$214,124.00', '$32,423.00', null, '02.10.2022', null, null, null, null, null]
 ];
 
 const typeArr = [
+  "text",
+  "text",
+  "text",
+  "text",
+  "text",
+  "text",
+  "text",
+  "text",
   "number",
+  "text",
   "date",
   "text",
   "text",
   "text",
   "text",
   "text",
-  "text",
-  "text",
-  "text",
-  "text",
   "number",
-  "number",
-  "number",
+  "date",
+  "date",
+  "text",
+  "text",
+  "text",
   "date",
 ];
 
@@ -125,13 +70,13 @@ const TablePage = () => {
   const [modal, setModal] = useState(false);
   const [modalRow, setModalRow] = useState([]);
   const [modalRowIndex, setModalRowIndex] = useState(0);
-  const [disabled, setDisabled] = useState(false)
   const [modal2, setModal2] = useState(false)
   const [sad, setSad] = useState(true)
+  // Массив выпадающих списков
+  const [dropArr, setDropArr] = useState(data[1]);
   // Заголовки столбцов
   const title = contentFromBase[0];
-  // Массив выпадающих списков
-  const dropArr = contentFromBase[1];
+
 
   const getContent = async (url) => {
     const response = await fetch(url);
@@ -140,7 +85,7 @@ const TablePage = () => {
 
   const onSubmit = (event) => {
     setContentFromBase(content2);
-
+    setDropArr(content2[1])
     const data = new FormData();
     data.append("data", JSON.stringify(content2));
     fetch("/api/test1", {
@@ -148,17 +93,17 @@ const TablePage = () => {
       body: data,
     }).finally(() => console.log(123));
     event.preventDefault();
-
-
-    event.preventDefault();
   };
   const onClick = (event) =>{
     const a = JSON.parse(JSON.stringify(contentFromBase));
-    a[a.length] = [['-'],['-'],['-'],['-'],['-'],['-'],['-'],['-'],['-'],['-'],['-'],['-'],['-'],['-'],['-']]
+    a[a.length] = [['-'],['-'],['-'],['-'],['-'],['-'],['-'],['-'],['-'],['-'],['-'],['-'],['-'],['-'],['-'], ['-'], ['-'], ['-'], ['-'], ['-'], ['-'], ['-'], ['-'],]
     setContentFromBase(a)
   }
   useEffect(() => {
-    getContent('/api/test').then((data) => setContentFromBase(data));
+    getContent('/api/test').then((data) => {
+      setContentFromBase(data);
+      setDropArr(data[1])
+    });
   }, []);
 
   const fileName = "Форма списка";
@@ -166,10 +111,6 @@ const TablePage = () => {
   const onClickHandler = () => {
     setModal2(true)
     setSad(false)
-  }
-
-  const sadHandler = () => {
-    setSad(true)
   }
 
   const onClose = () => {
@@ -183,7 +124,8 @@ const TablePage = () => {
     <div className="App">
       <div>
         <Button
-            style={{ margin: "1% 0 1% 87%"}}
+            className="addButton"
+            style={{ margin: "1% 1% 1%"}}
             onClick={onClick}
         >
           Добавить новую экспертизу
@@ -194,26 +136,28 @@ const TablePage = () => {
 
             <Form onSubmit={onSubmit}>
 
-              {sad && <Dropdown
-                  title="СЭД ID"
-                  data={modalRow[0]}
-                  index_column={0}
-                  index_row={modalRowIndex + 1}
-                  content2={content2}
-                  content={contentFromBase}
-                  dropValue={dropArr[0]}
-                  typeArr={typeArr}
-              />}
+              <div className="container">
+                {sad && <Dropdown
+                    title="СЭД ID"
+                    data={modalRow[0]}
+                    index_column={0}
+                    index_row={modalRowIndex + 1}
+                    content2={content2}
+                    content={contentFromBase}
+                    dropValue={dropArr[0]}
+                    typeArr={typeArr}
+                />}
 
-              {sad && <Button
-                style={{ marginLeft: "87%" }}
-                variant="primary"
-                type="submit"
-                onClick={onClickHandler}
+                {sad && <Button
+                    style={{ marginLeft: "87%" }}
+                    variant="primary"
+                    type="submit"
+                    onClick={onClickHandler}
                 >
-                Добавить из СЭД
+                  Получить документ из СЭД
                 </Button>
-              }
+                }
+              </div>
 
               {modal2 && title.map((nameColumn, key) => {
                 return (

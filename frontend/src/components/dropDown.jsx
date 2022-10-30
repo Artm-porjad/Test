@@ -5,7 +5,7 @@ import Form from "react-bootstrap/Form";
 import InputGroup from "react-bootstrap/InputGroup";
 import 'date-input-polyfill';
 
-const DropDown = ({title, data, index_column, index_row, content2, content, dropValue, typeArr}) => {
+const DropDown = ({title, data, index_column, index_row, content2, dropValue, typeArr}) => {
     const [result, setResult] = useState(data);
     const [titleDropDown, setTitleDropDown] = useState(data);
     const [typeIndex, setTypeIndex] = useState(typeArr[index_column])
@@ -20,7 +20,7 @@ const DropDown = ({title, data, index_column, index_row, content2, content, drop
         setResult(e.currentTarget.value);
     }
 
-    const inputId = typeIndex === "date" || typeIndex === "number" ? "input-date-number" : ''
+    const inputId = typeIndex === "date" || typeIndex === "number" || index_column === 0? "input-date-number" : ''
 
     return (
         <>

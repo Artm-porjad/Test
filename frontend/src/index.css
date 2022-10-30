@@ -9,3 +9,28 @@
 #input-date-number{
     max-width: 20% !important;
 }
+
+.exelButton{
+    background-color: grey !important;
+    color: white !important;
+    border: none !important;
+}
+
+.exelButton:hover{
+    background-color: green !important;
+}
+
+.addButton{
+    background-color: grey !important;
+    color: white !important;
+    border: none !important;
+}
+
+.addButton:hover{
+    background-color: black !important;
+}
+
+#sadField{
+    min-width: 50% !important;
+}
+

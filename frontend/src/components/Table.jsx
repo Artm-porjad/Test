@@ -1,6 +1,6 @@
 import Table from "react-bootstrap/Table";
 
-const TableData = ({ typeArr, title, data, setModal, setModalRow, setModalRowIndex }) => {
+const TableData = ({ title, data, setModal, setModalRow, setModalRowIndex }) => {
 
     return (
         <>
@@ -8,7 +8,7 @@ const TableData = ({ typeArr, title, data, setModal, setModalRow, setModalRowInd
                 <thead className="table-primary text-center align-text-top">
                     <tr>
                         {title.map((nameColumn, key) => {
-                            return <th key={key}>{nameColumn}</th>;
+                            return <th style={{ backgroundColor: "#ADADAD" }}   key={key}>{nameColumn}</th>;
                         })}
                     </tr>
                 </thead>
