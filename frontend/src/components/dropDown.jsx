@@ -5,12 +5,11 @@ import Form from "react-bootstrap/Form";
 import InputGroup from "react-bootstrap/InputGroup";
 import 'date-input-polyfill';
 
-const DropDown = ({title, data, index_column, index_row, content2, content, dropValue, typeArr}) => {
+const DropDown = ({title, dropdownList, data, index_column, index_row, content2,typeArr}) => {
     const [result, setResult] = useState(data);
     const handlerSelect= (e)=>{
         setResult(e);
     }
-
     content2[index_row + 1][index_column] = result
     const onChange = (e)=>{
         setResult(e.currentTarget.value);
@@ -27,13 +26,13 @@ const DropDown = ({title, data, index_column, index_row, content2, content, drop
                     defaultValue={result}
                     onChange={onChange}
                 />
-                {dropValue.length !== 0 && <DropdownButton
+                {dropdownList.length !== 0 && <DropdownButton
                     onSelect={handlerSelect}
                     variant="outline-secondary"
                     title={''}
                     id="input-group-dropdown-1"
                 >
-                    {dropValue.map((value, key) => {
+                    {dropdownList.map((value, key) => {
                         return (<Dropdown.Item key={key} eventKey={value}>{value}</Dropdown.Item>)
                     })
                     }

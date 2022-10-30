@@ -100,27 +100,39 @@ const data = [
 ];
 
 const typeArr = [
+  "text",
+  "text",
+  "text",
+  "text",
+  "text",
+  "text",
+  "text",
+  "text",
   "number",
+  "text",
   "date",
   "text",
   "text",
   "text",
   "text",
   "text",
-  "text",
-  "text",
-  "text",
-  "text",
   "number",
-  "number",
-  "number",
+  "date",
+  "date",
+  "text",
+  "text",
+  "text",
   "date",
 ];
 
 const TablePage = () => {
   // Первоначальные данные
-  // const [content, setContent] = useState(data);
+
+
+
   const [contentFromBase, setContentFromBase] = useState(data);
+  // Массив выпадающих списков
+  const [dropdownList, setDropdownList] = useState(data[1]);
   const content2 = JSON.parse(JSON.stringify(contentFromBase));
   // Состояние модального окна
   const [modal, setModal] = useState(false);
@@ -128,8 +140,6 @@ const TablePage = () => {
   const [modalRowIndex, setModalRowIndex] = useState(0);
   // Заголовки столбцов
   const title = contentFromBase[0];
-  // Массив выпадающих списков
-  const dropArr = contentFromBase[1];
 
   const getContent = async (url) => {
     const response = await fetch(url);
@@ -139,16 +149,13 @@ const TablePage = () => {
   const onSubmit = (event) => {
     setContentFromBase(content2);
     console.log(content2)
-    console.log(contentFromBase)
+    setDropdownList(content2[1])
     const data = new FormData();
     data.append("data", JSON.stringify(content2));
     fetch("/api/test1", {
       method: "POST",
       body: data,
     }).finally(() => console.log(123));
-    event.preventDefault();
-
-
     event.preventDefault();
   };
   const onClick = (event) =>{
@@ -157,7 +164,11 @@ const TablePage = () => {
     setContentFromBase(a)
   }
   useEffect(() => {
-    getContent('/api/test').then((data) => setContentFromBase(data));
+    getContent('/api/test').then((data) => {
+      console.log(data)
+      setContentFromBase(data);
+      setDropdownList(data[1]);
+    });
   }, []);
 
 
@@ -180,13 +191,13 @@ const TablePage = () => {
                 return (
                   <Dropdown
                     title={nameColumn}
+                    dropdownList = {dropdownList[key]}
                     data={modalRow[key]}
                     index_column={key}
                     index_row={modalRowIndex + 1}
                     key={key}
                     content2={content2}
                     content={contentFromBase}
-                    dropValue={dropArr[key]}
                     typeArr={typeArr}
                   />
                 );
