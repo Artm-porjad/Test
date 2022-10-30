@@ -1,9 +1,6 @@
 from starlette.applications import Starlette
 from sqlalchemy.ext.asyncio import create_async_engine
 from starlette.routing import Route, Mount
-from website.tables import get_table
-from starlette.middleware import Middleware
-from starlette.middleware.authentication import AuthenticationMiddleware
 
 from website.tables import get_table, post_table
 from common.envars import DATABASE_URL
