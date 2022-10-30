@@ -119,13 +119,15 @@ const typeArr = [
 
 const TablePage = () => {
   // Первоначальные данные
-  // const [content, setContent] = useState(data);
   const [contentFromBase, setContentFromBase] = useState(data);
   const content2 = JSON.parse(JSON.stringify(contentFromBase));
   // Состояние модального окна
   const [modal, setModal] = useState(false);
   const [modalRow, setModalRow] = useState([]);
   const [modalRowIndex, setModalRowIndex] = useState(0);
+  const [disabled, setDisabled] = useState(false)
+  const [modal2, setModal2] = useState(false)
+  const [sad, setSad] = useState(true)
   // Заголовки столбцов
   const title = contentFromBase[0];
   // Массив выпадающих списков
@@ -138,8 +140,7 @@ const TablePage = () => {
 
   const onSubmit = (event) => {
     setContentFromBase(content2);
-    console.log(content2)
-    console.log(contentFromBase)
+
     const data = new FormData();
     data.append("data", JSON.stringify(content2));
     fetch("/api/test1", {
@@ -160,8 +161,23 @@ const TablePage = () => {
     getContent('/api/test').then((data) => setContentFromBase(data));
   }, []);
 
-
   const fileName = "Форма списка";
+
+  const onClickHandler = () => {
+    setModal2(true)
+    setSad(false)
+  }
+
+  const sadHandler = () => {
+    setSad(true)
+  }
+
+  const onClose = () => {
+    setModal(false)
+    setModal2(false)
+    setSad(true)
+  }
+
 
   return (
     <div className="App">
@@ -174,32 +190,84 @@ const TablePage = () => {
         </Button>
 
         {modal && (
-          <Modal onClose={() => setModal(false)} title="Форма карточки">
-            <Form style={{display: 'flex', flexFlow: 'column wrap'}} onSubmit={onSubmit}>
-              {title.map((nameColumn, key) => {
-                return (
-                  <Dropdown
-                    title={nameColumn}
-                    data={modalRow[key]}
-                    index_column={key}
-                    index_row={modalRowIndex + 1}
-                    key={key}
-                    content2={content2}
-                    content={contentFromBase}
-                    dropValue={dropArr[key]}
-                    typeArr={typeArr}
-                  />
-                );
-              })}
+          <Modal onClose={onClose} title="Форма карточки">
 
-              <Button
+            <Form onSubmit={onSubmit}>
+
+              {sad && <Dropdown
+                  title="СЭД ID"
+                  data={modalRow[0]}
+                  index_column={0}
+                  index_row={modalRowIndex + 1}
+                  content2={content2}
+                  content={contentFromBase}
+                  dropValue={dropArr[0]}
+                  typeArr={typeArr}
+              />}
+
+              {sad && <Button
                 style={{ marginLeft: "87%" }}
                 variant="primary"
                 type="submit"
+                onClick={onClickHandler}
+                >
+                Добавить из СЭД
+                </Button>
+              }
+
+              {modal2 && title.map((nameColumn, key) => {
+                return (
+                    <Dropdown
+                        title={nameColumn}
+                        data={modalRow[key]}
+                        index_column={key}
+                        index_row={modalRowIndex + 1}
+                        key={key}
+                        content2={content2}
+                        content={contentFromBase}
+                        dropValue={dropArr[key]}
+                        typeArr={typeArr}
+                    />
+                );
+              })}
+
+              {modal2 && <Button
+                  style={{marginLeft: "87%"}}
+                  variant="primary"
+                  type="submit"
+                  // onClick={sadHandler}
               >
                 Сохранить изменения
-              </Button>
+              </Button>}
+
+
             </Form>
+
+            {/*{disabled && <Form onSubmit={onSubmit}>*/}
+            {/*  {title.map((nameColumn, key) => {*/}
+            {/*    return (*/}
+            {/*        <Dropdown*/}
+            {/*            title={nameColumn}*/}
+            {/*            data={modalRow[key]}*/}
+            {/*            index_column={key}*/}
+            {/*            index_row={modalRowIndex + 1}*/}
+            {/*            key={key}*/}
+            {/*            content2={content2}*/}
+            {/*            content={contentFromBase}*/}
+            {/*            dropValue={dropArr[key]}*/}
+            {/*            typeArr={typeArr}*/}
+            {/*        />*/}
+            {/*    );*/}
+            {/*  })}*/}
+
+              {/*<Button*/}
+              {/*    style={{marginLeft: "87%"}}*/}
+              {/*    variant="primary"*/}
+              {/*    type="submit"*/}
+              {/*>*/}
+              {/*  Сохранить изменения*/}
+              {/*</Button>*/}
+            {/*</Form>}*/}
           </Modal>
         )}
       </div>

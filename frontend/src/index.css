@@ -1,3 +1,11 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+#input-group-dropdown-1{
+    min-width: 50% !important;
+}
+
+#input-date-number{
+    max-width: 20% !important;
+}

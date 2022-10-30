@@ -7,31 +7,40 @@ import 'date-input-polyfill';
 
 const DropDown = ({title, data, index_column, index_row, content2, content, dropValue, typeArr}) => {
     const [result, setResult] = useState(data);
+    const [titleDropDown, setTitleDropDown] = useState(data);
+    const [typeIndex, setTypeIndex] = useState(typeArr[index_column])
+    const [dis, setDis] = useState(false)
     const handlerSelect= (e)=>{
         setResult(e);
+        setTitleDropDown(e)
     }
 
     content2[index_row + 1][index_column] = result
     const onChange = (e)=>{
         setResult(e.currentTarget.value);
-
     }
+
+    const inputId = typeIndex === "date" || typeIndex === "number" ? "input-date-number" : ''
+
     return (
         <>
             <Form.Label>{title}</Form.Label>
             <InputGroup className="mb-3">
-                <Form.Control
+                {dropValue.length === 0 && <Form.Control
+                    disabled={false}
+                    id={inputId}
                     name="text"
                     type={typeArr[index_column]}
                     value={result}
                     defaultValue={result}
                     onChange={onChange}
-                />
+                />}
                 {dropValue.length !== 0 && <DropdownButton
                     onSelect={handlerSelect}
                     variant="outline-secondary"
-                    title={''}
+                    title={titleDropDown}
                     id="input-group-dropdown-1"
+                    onChange={() => setResult(titleDropDown)}
                 >
                     {dropValue.map((value, key) => {
                         return (<Dropdown.Item key={key} eventKey={value}>{value}</Dropdown.Item>)
@@ -39,28 +48,6 @@ const DropDown = ({title, data, index_column, index_row, content2, content, drop
                     }
                     <Dropdown.Divider/>
                 </DropdownButton>}
-
-
-
-                {/*{typeArr[index_column] === 'date'*/}
-                {/*    ?*/}
-                {/*    <Form.Control*/}
-                {/*    data-date-format="dd/mm/yyyy"*/}
-                {/*    name="text"*/}
-                {/*    type={typeArr[index_column]}*/}
-                {/*    value={result}*/}
-                {/*    defaultValue={result}*/}
-                {/*    onChange={onChange}*/}
-
-                {/*/> : <Form.Control*/}
-                {/*        name="text"*/}
-                {/*        type={typeArr[index_column]}*/}
-                {/*        value={result}*/}
-                {/*        defaultValue={result}*/}
-                {/*        onChange={onChange}*/}
-                {/*    />}*/}
-
-
             </InputGroup>
         </>
     );
