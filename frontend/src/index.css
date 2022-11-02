@@ -3,34 +3,68 @@
 @tailwind utilities;
 
 #input-group-dropdown-1{
-    min-width: 50% !important;
+    max-width: 296px;
 }
 
 #input-date-number{
-    max-width: 20% !important;
+    max-width: 296px !important;
 }
 
 .exelButton{
-    background-color: grey !important;
-    color: white !important;
-    border: none !important;
+    border: #44c2c3 solid 2px !important;
+    background-color: white !important;
+    color: #44c2c3 !important;
 }
 
 .exelButton:hover{
-    background-color: green !important;
+    background-color: #02a0d8 !important;
+    color: white !important;
 }
 
 .addButton{
-    background-color: grey !important;
-    color: white !important;
-    border: none !important;
+    background-color: white !important;
+    color: #44c2c3 !important;
+    border: #44c2c3 solid 2px !important;
 }
 
 .addButton:hover{
-    background-color: black !important;
+    background-color: #02a0d8 !important;
+    color: white !important;
 }
 
 #sadField{
     min-width: 50% !important;
 }
 
+#closeBtn{
+    /*display: flex;*/
+    /*justify-content: flex-end;*/
+    
+    margin-left: 99%;
+}
+
+.outSad{
+    background-color: #308EF2 !important;
+    margin-left: 10px!important;
+}
+
+.outSad:hover{
+    background-color: #007BFF !important;
+}
+
+.container{
+    display: flex;
+    align-items: flex-end!important;
+}
+
+.saveChanges{
+    background-color: #308EF2 !important;
+}
+
+.saveChanges:hover{
+    background-color: #007BFF !important;
+}
+
+#container_1{
+    width: 296px!important;
+}

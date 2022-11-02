@@ -7,6 +7,7 @@ import Dropdown from "../components/dropDown";
 import { ExportCSV } from "../components/ExportCSV";
 
 
+
 const data = [
     ['Ссылка из СЭД', 'Куратор АПРФ', 'Направление', 'Фед.проект', 'Тип документа', 'Текущий статус', 'ФОИВ',
     'Название документа', 'Рег. номер МКС в СЭД', 'В дополнение к или взамен (предыстория документа)',
@@ -128,35 +129,41 @@ const TablePage = () => {
             style={{ margin: "1% 1% 1%"}}
             onClick={onClick}
         >
-          Добавить новую экспертизу
+          <b style={{ paddingRight:"5px" }}>+</b>Добавить новую экспертизу
         </Button>
 
+        <ExportCSV csvData={contentFromBase} fileName={fileName} />
+
         {modal && (
-          <Modal onClose={onClose} title="Форма карточки">
+          <Modal id="modal" onClose={onClose} title="Форма карточки">
 
             <Form onSubmit={onSubmit}>
 
               <div className="container">
-                {sad && <Dropdown
-                    title="СЭД ID"
-                    data={modalRow[0]}
-                    index_column={0}
-                    index_row={modalRowIndex + 1}
-                    content2={content2}
-                    content={contentFromBase}
-                    dropValue={dropArr[0]}
-                    typeArr={typeArr}
-                />}
+                <div id="container_1">
+                  {sad && <Dropdown
+                      title="СЭД ID"
+                      data={modalRow[0]}
+                      index_column={0}
+                      index_row={modalRowIndex + 1}
+                      content2={content2}
+                      content={contentFromBase}
+                      dropValue={dropArr[0]}
+                      typeArr={typeArr}
+                  />}
+                </div>
 
-                {sad && <Button
-                    style={{ marginLeft: "87%" }}
-                    variant="primary"
-                    type="submit"
-                    onClick={onClickHandler}
-                >
-                  Получить документ из СЭД
-                </Button>
-                }
+                <div>
+                  {sad && <Button
+                      className="outSad"
+                      variant="primary"
+                      type="submit"
+                      onClick={onClickHandler}
+                  >
+                    Получить документ из СЭД
+                  </Button>
+                  }
+                </div>
               </div>
 
               {modal2 && title.map((nameColumn, key) => {
@@ -176,14 +183,13 @@ const TablePage = () => {
               })}
 
               {modal2 && <Button
+                  className="saveChanges"
                   style={{marginLeft: "87%"}}
                   variant="primary"
                   type="submit"
-                  // onClick={sadHandler}
               >
                 Сохранить изменения
               </Button>}
-
 
             </Form>
 
@@ -224,7 +230,7 @@ const TablePage = () => {
         setModalRowIndex={setModalRowIndex}
       />
 
-      <ExportCSV csvData={contentFromBase} fileName={fileName} />
+
     </div>
   );
 };

@@ -9,10 +9,10 @@ const DropDown = ({title, data, index_column, index_row, content2, dropValue, ty
     const [result, setResult] = useState(data);
     const [titleDropDown, setTitleDropDown] = useState(data);
     const [typeIndex, setTypeIndex] = useState(typeArr[index_column])
-    const [dis, setDis] = useState(false)
     const handlerSelect= (e)=>{
-        setResult(e);
+        setResult(e.target.value);
         setTitleDropDown(e)
+        console.log('hi')
     }
 
     content2[index_row + 1][index_column] = result
@@ -20,12 +20,12 @@ const DropDown = ({title, data, index_column, index_row, content2, dropValue, ty
         setResult(e.currentTarget.value);
     }
 
-    const inputId = typeIndex === "date" || typeIndex === "number" || index_column === 0? "input-date-number" : ''
+    const inputId = typeIndex === "date" || typeIndex === "number" || index_column === 0 ? "input-date-number" : ''
 
     return (
-        <>
+        <div style={{paddingTop: "17px"}}>
             <Form.Label>{title}</Form.Label>
-            <InputGroup className="mb-3">
+            <InputGroup >
                 {dropValue.length === 0 && <Form.Control
                     disabled={false}
                     id={inputId}
@@ -35,23 +35,55 @@ const DropDown = ({title, data, index_column, index_row, content2, dropValue, ty
                     defaultValue={result}
                     onChange={onChange}
                 />}
-                {dropValue.length !== 0 && <DropdownButton
-                    onSelect={handlerSelect}
-                    variant="outline-secondary"
-                    title={titleDropDown}
-                    id="input-group-dropdown-1"
-                    onChange={() => setResult(titleDropDown)}
-                >
-                    {dropValue.map((value, key) => {
-                        return (<Dropdown.Item key={key} eventKey={value}>{value}</Dropdown.Item>)
-                    })
-                    }
-                    <Dropdown.Divider/>
-                </DropdownButton>}
+
+                {/*{dropValue.length !== 0 && <>*/}
+                {/*    <Form.Control id="input-group-dropdown-1" placeholder={result} disabled={true}/>*/}
+                {/*    <DropdownButton*/}
+                {/*        title=""*/}
+                {/*        onSelect={handlerSelect}*/}
+                {/*        variant="outline-secondary"*/}
+                {/*        onChange={() => setResult(titleDropDown)}*/}
+                {/*    >*/}
+                {/*        {dropValue.map((value, key) => {*/}
+                {/*            return (<Dropdown.Item key={key} eventKey={value}>{value}</Dropdown.Item>)*/}
+                {/*        })*/}
+                {/*        }*/}
+                {/*        <Dropdown.Divider/>*/}
+                {/*    </DropdownButton>*/}
+                {/*</>}*/}
+
+                {dropValue.length !== 0 &&
+                    <Form.Select
+                        aria-label="Default select example"
+                        onChange={handlerSelect}
+                        // onChange={() => setResult(titleDropDown)}
+                    >
+                        <option>
+
+                        </option>
+                        {dropValue.map((value, key) => {
+                            return (<option key={key}>{value}</option> )
+                        })}
+                    </Form.Select>}
             </InputGroup>
-        </>
+        </div>
     );
 }
 
 
 export default DropDown;
+
+{/*{dropValue.length !== 0 && <DropdownButton*/}
+{/*    aria-disabled={true}*/}
+{/*    onSelect={handlerSelect}*/}
+{/*    variant="outline-secondary"*/}
+{/*    title={titleDropDown}*/}
+{/*    id="input-group-dropdown-1"*/}
+{/*    onChange={() => setResult(titleDropDown)}*/}
+{/*>*/}
+{/*    {dropValue.map((value, key) => {*/}
+{/*        return (<Dropdown.Item key={key} eventKey={value}>{value}</Dropdown.Item>)*/}
+{/*    })*/}
+{/*    }*/}
+{/*    <Dropdown.Divider/>*/}
+{/*</DropdownButton>}*/}

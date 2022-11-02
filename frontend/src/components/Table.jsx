@@ -8,7 +8,7 @@ const TableData = ({ title, data, setModal, setModalRow, setModalRowIndex }) => 
                 <thead className="table-primary text-center align-text-top">
                     <tr>
                         {title.map((nameColumn, key) => {
-                            return <th style={{ backgroundColor: "#ADADAD" }}   key={key}>{nameColumn}</th>;
+                            return <th style={{ backgroundColor: "#394458", color: "white"}}   key={key}>{nameColumn}</th>;
                         })}
                     </tr>
                 </thead>
@@ -22,7 +22,6 @@ const TableData = ({ title, data, setModal, setModalRow, setModalRowIndex }) => 
                             }} key={key}>
                                 {row.map((nameColumn2, key)=>{
                                     return <td key={key}>{nameColumn2}</td>
-                                    // (typeArr[key]=='date' ? (return <td key={key}>{nameColumn2.slice(8, 10)+'.'+nameColumn2.slice(5,7)+'.'+nameColumn2.slice(0,4)}</td>) : (return <td key={key}>{nameColumn2}</td>);
                             })}
                             </tr>
                         );
